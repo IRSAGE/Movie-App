@@ -41,7 +41,7 @@ export default {
     object-fit: cover;
   }
   .text-container {
-    z-index: 99;
+    z-index: 2;
     position: absolute;
     top: 0;
     margin: 0;
