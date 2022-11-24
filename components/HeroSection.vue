@@ -7,7 +7,23 @@
         <h1>
           Millions of movies, TV shows and people to discover. Explore now.
         </h1>
-        <a href="#movie-grid" class="button">View Movies</a>
+        <!-- <a href="#movie-grid" class="button">View Movies</a> -->
+      </div>
+      <!-- Search -->
+      <div class="container search">
+        <input
+          type="text"
+          placeholder="Search"
+          @keyup.enter="
+            this.$router.push({
+              path: `/search_movie/${searchKey}`,
+            })
+          "
+          v-model.lazy="searchKey"
+        />
+        <button v-show="searchKey !== ''" @click="clearSearch" class="button">
+          Clear Search
+        </button>
       </div>
     </div>
   </div>
@@ -15,11 +31,26 @@
 
 <script>
 export default {
-  name: "hero",
+  name: "HeroSection",
+  data() {
+    return {
+      searchKey: "",
+    };
+  },
+
+  methods: {
+    clearSearch() {
+      this.searchKey = "";
+    },
+  },
 };
 </script>
 
 <style lang="scss" scoped>
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
 .hero {
   height: 400px;
   position: relative;
@@ -79,10 +110,26 @@ export default {
         font-weight: 500;
       }
     }
+  }
+  .search {
+    display: flex;
+    padding: 42px 16px;
+    width: 100%;
+    input {
+      max-width: 350px;
+      width: 100%;
+      padding: 12px 6px;
+      font-size: 14px;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      outline: none;
+      &:focus {
+        outline: none;
+      }
+    }
     .button {
-      font-size: 20px;
-      align-self: flex-start;
-      margin-top: 40px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
     }
   }
 }
